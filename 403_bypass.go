@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+const colorReset = "\033[0m"
+const colorRed = "\033[31m"
+const colorGreen = "\033[32m"
+const colorYellow = "\033[33m"
+
 func PrintBanner() {
 	banner := `
 ██    ██  █████  ██   ██  ██████  ██████  ██████  
@@ -36,12 +41,6 @@ func Check(err error) {
 
 func Request(payload string) {
 
-	colorReset := "\033[0m"
-
-	colorRed := "\033[31m"
-	colorGreen := "\033[32m"
-	colorYellow := "\033[33m"
-
 	response, err := http.Get(payload)
 	Check(err)
 
@@ -57,12 +56,6 @@ func Request(payload string) {
 }
 
 func RequestWithHeaders(url string, header string, value string) {
-
-	colorReset := "\033[0m"
-
-	colorRed := "\033[31m"
-	colorGreen := "\033[32m"
-	colorYellow := "\033[33m"
 
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
@@ -103,25 +96,25 @@ func main() {
 		return
 	}
 
-	Request(url + "/" + path)                  // site.com/secret
-	Request(url + "/" + strings.ToUpper(path)) // site.com/SECRET
-	Request(url + "/" + path + "/")            // site.com/secret/
-	Request(url + "//" + path + "//")          // site.com//secret//
-	Request(url + "/;/" + path)                // site.com/;/secret
-	Request(url + "//;//" + path)              // site.com//;//secret
-	Request(url + "/.;/" + path)               // site.com/.;/secret
-	Request(url + "/%2e/" + path)              // site.com/%2e/secret
-	Request(url + "/%252e/" + path)            // site.com/%252e/secret
-	Request(url + "/%ef%bc%8f" + path)         // site.com/%ef%bc%8fsecret
-	Request(url + "/" + path + "%20")          // site.com/secret%20
-	Request(url + "/" + path + "%09")          // site.com/secret%09
-	Request(url + "/" + path + ".json")        // site.com/secret.json
-	Request(url + "/" + path + ".html")        // site.com/secret.html
-	Request(url + "/" + path + ".php")         // site.com/secret.php
-	Request(url + "/" + path + "/*")           // site.com/secret/*
-	Request(url + "/" + path + "?")            // site.com/secret?
-	Request(url + "/" + path + "/?blob")       // site.com/secret/?blob
-	Request(url + "/" + path + "#")            // site.com/secret#
+	Request(url + "/" + path)                  // example.com/secret
+	Request(url + "/" + strings.ToUpper(path)) // example.com/SECRET
+	Request(url + "/" + path + "/")            // example.com/secret/
+	Request(url + "//" + path + "//")          // example.com//secret//
+	Request(url + "/;/" + path)                // example.com/;/secret
+	Request(url + "//;//" + path)              // example.com//;//secret
+	Request(url + "/.;/" + path)               // example.com/.;/secret
+	Request(url + "/%2e/" + path)              // example.com/%2e/secret
+	Request(url + "/%252e/" + path)            // example.com/%252e/secret
+	Request(url + "/%ef%bc%8f" + path)         // example.com/%ef%bc%8fsecret
+	Request(url + "/" + path + "%20")          // example.com/secret%20
+	Request(url + "/" + path + "%09")          // example.com/secret%09
+	Request(url + "/" + path + ".json")        // example.com/secret.json
+	Request(url + "/" + path + ".html")        // example.com/secret.html
+	Request(url + "/" + path + ".php")         // example.com/secret.php
+	Request(url + "/" + path + "/*")           // example.com/secret/*
+	Request(url + "/" + path + "?")            // example.com/secret?
+	Request(url + "/" + path + "/?blob")       // example.com/secret/?blob
+	Request(url + "/" + path + "#")            // example.com/secret#
 
 	RequestWithHeaders(base_url, "X-Originating-IP", "127.0.0.1")
 	RequestWithHeaders(base_url, "X-Forwarded-For", "127.0.0.1")
