@@ -80,13 +80,22 @@ func main() {
 
 	PrintBanner()
 
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: 403-bypass <url>")
-		fmt.Println("Example: 403-bypass \"http://example.com/secrets\"")
+	if len(os.Args) < 2 || os.Args[1] == "-h" || os.Args[1] == "--help" {
+		fmt.Println("Usage: 403_bypass <url>")
+		fmt.Println("Example: 403_bypass \"http://example.com/secrets\"")
 		return
 	}
 
 	base_url := os.Args[1]
+	_, err := http.Get(base_url)
+	if err != nil {
+		fmt.Printf("[!] Could not get \"%s\".\n", base_url)
+		fmt.Println()
+		fmt.Println("Usage: 403_bypass <url>")
+		fmt.Println("Example: 403_bypass \"http://example.com/secrets\"")
+		return
+	}
+
 	path := GetPath(base_url)
 	url := GetUrl(base_url)
 
