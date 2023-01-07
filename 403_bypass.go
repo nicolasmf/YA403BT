@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 const colorReset = "\033[0m"
@@ -76,6 +77,19 @@ func RequestWithHeaders(url string, header string, value string) {
 	defer response.Body.Close()
 }
 
+func CheckConnection(url string) bool {
+	client := http.Client{
+		Timeout: 3 * time.Second,
+	}
+	_, err := client.Get(url)
+	if err != nil {
+		fmt.Printf("[!] Could not get \"%s\".\n", url)
+		fmt.Println("     Please check your internet connection.")
+		return false
+	}
+	return true
+}
+
 func main() {
 
 	PrintBanner()
@@ -87,12 +101,7 @@ func main() {
 	}
 
 	base_url := os.Args[1]
-	_, err := http.Get(base_url)
-	if err != nil {
-		fmt.Printf("[!] Could not get \"%s\".\n", base_url)
-		fmt.Println()
-		fmt.Println("Usage: 403_bypass <url>")
-		fmt.Println("Example: 403_bypass \"http://example.com/secrets\"")
+	if !CheckConnection(base_url) {
 		return
 	}
 
@@ -105,7 +114,9 @@ func main() {
 		return
 	}
 
-	Request(url + "/" + path)                  // example.com/secret
+	CheckConnection(url)
+
+	/* Request(url + "/" + path)                  // example.com/secret
 	Request(url + "/" + strings.ToUpper(path)) // example.com/SECRET
 	Request(url + "/" + path + "/")            // example.com/secret/
 	Request(url + "//" + path + "//")          // example.com//secret//
@@ -139,6 +150,6 @@ func main() {
 	RequestWithHeaders(base_url, "X-ProxyUser-Ip", "127.0.0.1")
 	RequestWithHeaders(base_url, "Host", "localhost")
 	RequestWithHeaders(base_url, "X-Original-URL", "/admin/console")
-	RequestWithHeaders(base_url, "X-Rewrite-URL", "/admin/console")
+	RequestWithHeaders(base_url, "X-Rewrite-URL", "/admin/console") */
 
 }
