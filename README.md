@@ -4,11 +4,14 @@
 
 403 Bypass based on [hacktricks ressource](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/403-and-401-bypasses)
 
-
 ## Building
 
+```bash
+make build
 ```
-$ git clone https://github.com/nicolasmf/YA403BT.git 
-$ cd YA403BT 
-$ go build .
+
+## Uninstalling
+
+```bash
+make uninstall
 ```
