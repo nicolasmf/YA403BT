@@ -7,10 +7,23 @@
 ## Building
 
 ```bash
+go build
+mv 403_bypass /usr/bin/
+```
+
+or
+
+```bash
 make build
 ```
 
 ## Uninstalling
+
+```bash
+rm /usr/bin/403_bypass
+```
+
+or
 
 ```bash
 make uninstall
