@@ -116,7 +116,7 @@ func main() {
 
 	CheckConnection(url)
 
-	/* Request(url + "/" + path)                  // example.com/secret
+	Request(url + "/" + path)                  // example.com/secret
 	Request(url + "/" + strings.ToUpper(path)) // example.com/SECRET
 	Request(url + "/" + path + "/")            // example.com/secret/
 	Request(url + "//" + path + "//")          // example.com//secret//
@@ -150,6 +150,6 @@ func main() {
 	RequestWithHeaders(base_url, "X-ProxyUser-Ip", "127.0.0.1")
 	RequestWithHeaders(base_url, "Host", "localhost")
 	RequestWithHeaders(base_url, "X-Original-URL", "/admin/console")
-	RequestWithHeaders(base_url, "X-Rewrite-URL", "/admin/console") */
+	RequestWithHeaders(base_url, "X-Rewrite-URL", "/admin/console")
 
 }
