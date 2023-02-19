@@ -114,8 +114,6 @@ func main() {
 		return
 	}
 
-	CheckConnection(url)
-
 	Request(url + "/" + path)                  // example.com/secret
 	Request(url + "/" + strings.ToUpper(path)) // example.com/SECRET
 	Request(url + "/" + path + "/")            // example.com/secret/
